@@ -66,7 +66,7 @@ function App() {
       <SearchBar onSearch={handleSearch} />
       {error && <ErrorMessage error={error} />}
       <ImageGallery images={photos} onClickImage={isOpenModal} />
-      {loading && <Loader loading={loading} />} {/* Передача пропса loading */}
+      {loading && <Loader loading={loading} />}
       {photos.length > 0 && !loading && (
         <LoadMoreBtn onClick={() => setPage(page + 1)}>Load more</LoadMoreBtn>
       )}

@@ -3,7 +3,7 @@ import css from "./ImageModal.module.css";
 import { FC } from "react";
 
 // Тип для зображення
-interface Image {
+interface Photo {
   id: string;
   alt_description: string | null;
   description: string | null;
@@ -17,15 +17,14 @@ interface Image {
 }
 
 interface ImageModalProps {
+  isOpen: boolean; // Тип для модального вікна
   onClose: () => void;
-  image: Image | null;
+  image: Photo | null;
 }
 
 Modal.setAppElement("#root");
 
-const ImageModal: FC<ImageModalProps> = ({ onClose, image }) => {
-  const isOpen = Boolean(image);
-
+const ImageModal: FC<ImageModalProps> = ({ isOpen, onClose, image }) => {
   return (
     <Modal
       isOpen={isOpen}

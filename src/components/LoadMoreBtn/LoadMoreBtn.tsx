@@ -1,14 +1,16 @@
+import { ReactNode } from "react";
 import css from "./LoadMoreBtn.module.css";
 
 interface LoadMoreBtnProps {
-  onClick: () => void; // тип для функції, що викликається при кліку
+  onClick: () => void;
+  children: ReactNode;
 }
 
-export default function LoadMoreBtn({ onClick }: LoadMoreBtnProps) {
+export default function LoadMoreBtn({ onClick, children }: LoadMoreBtnProps) {
   return (
     <div className={css.loadmorecontainer}>
       <button className={css.btnloadmore} onClick={onClick}>
-        Load more
+        {children}
       </button>
     </div>
   );

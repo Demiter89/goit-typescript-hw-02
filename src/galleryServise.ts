@@ -1,8 +1,14 @@
 import axios from "axios";
 
+// Розширений тип Photo, який тепер сумісний із Image
 export interface Photo {
   id: string;
   alt_description: string | null;
+  description: string | null;
+  likes: number;
+  user: {
+    location: string | null;
+  };
   urls: {
     small: string;
     regular: string;
