@@ -5,10 +5,12 @@ interface ErrorMessageProps {
 }
 
 export default function ErrorMessage({ error }: ErrorMessageProps) {
+  if (!error) return null;
+
   return (
     <div className={css.error}>
       <p className={css.texterror}>
-        Whoops there was an error, please reload the page!{" "}
+        Whoops there was an error, please reload the page!
       </p>
     </div>
   );
