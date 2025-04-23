@@ -1,20 +1,3 @@
-function isOpenModal(image: Photo): void {
-  setSelectPhoto(image);
-  setOpenModal(true);
-}
-
-function onCloseModal(): void {
-  setSelectPhoto(null);
-  setOpenModal(false);
-}
-
-const handleSearch = (term: string): void => {
-  setSearchTerm(`${term}/${Date.now()}`);
-  setPage(1);
-  setPhotos([]);
-};
-
-
 import { useState, useEffect } from "react";
 import SearchBar from "./components/SearchBar/SearchBar";
 import "./App.css";
@@ -35,22 +18,26 @@ function App() {
   const [page, setPage] = useState<number>(1);
   const [openModal, setOpenModal] = useState<boolean>(false);
 
+  // Функція для відкриття модального вікна з зображенням
   function isOpenModal(image: Photo): void {
     setSelectPhoto(image);
     setOpenModal(true);
   }
 
+  // Функція для закриття модального вікна
   function onCloseModal(): void {
     setSelectPhoto(null);
     setOpenModal(false);
   }
 
+  // Функція для пошуку
   const handleSearch = (term: string): void => {
     setSearchTerm(`${term}/${Date.now()}`);
     setPage(1);
     setPhotos([]);
   };
 
+  // Виконання запиту до API при зміні сторінки або пошукового терміну
   useEffect(() => {
     if (searchTerm === "") return;
 
@@ -79,7 +66,7 @@ function App() {
       <SearchBar onSearch={handleSearch} />
       {error && <ErrorMessage error={error} />}
       <ImageGallery images={photos} onClickImage={isOpenModal} />
-      {loading && <Loader />}
+      {loading && <Loader loading={loading} />} {/* Передача пропса loading */}
       {photos.length > 0 && !loading && (
         <LoadMoreBtn onClick={() => setPage(page + 1)}>Load more</LoadMoreBtn>
       )}
